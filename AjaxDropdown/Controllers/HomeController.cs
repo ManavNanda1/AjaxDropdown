@@ -1,4 +1,5 @@
-﻿using AjaxDropdown.Repository.Repository;
+﻿using AjaxDropdown.Model.Model;
+using AjaxDropdown.Repository.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,8 @@ namespace AjaxDropdown.Controllers
         {
             try
             {
-                ViewBag.CountryList = DropDownObj.CountryDropdown();
+               ViewBag.CountryList = DropDownObj.CountryDropdown();
+                ViewBag.DeptList = DropDownObj.DeptDropdown();
             return View();
             }
             catch(Exception E)
@@ -29,11 +31,33 @@ namespace AjaxDropdown.Controllers
             }
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index (CSCModel Empdata , FormCollection FormData)
         {
-            ViewBag.Message = "Your application description page.";
+            try
+            {
+                string DeptId = FormData["Department"];
+                Empdata.Department = DeptId;
 
-            return View();
+                DropDownObj.AddEmpData(Empdata);
+                return RedirectToAction("Index");
+            }
+            catch(Exception E){
+                throw E;
+            }
+        }
+
+        public ActionResult AllEmployees()
+        {
+            try
+            {
+            return View(DropDownObj.AllEmployees());
+            }
+            catch(Exception E)
+            {
+                throw E;
+            }
+
         }
 
         public ActionResult Contact()

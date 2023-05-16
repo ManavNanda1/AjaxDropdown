@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Manav_SchoolMgmt_42Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Manav_SchoolMgmt_42Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,6 +20,25 @@
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="260" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="250" />
+          <Property Name="Email" Type="varchar" MaxLength="260" />
+          <Property Name="Department" Type="varchar" MaxLength="260" />
+          <Property Name="Country" Type="bigint" />
+          <Property Name="State" Type="bigint" />
+          <Property Name="City" Type="bigint" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -53,6 +72,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Emp__City__5EBF139D">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emp__Country__5CD6CB2B">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emp__State__5DCAEF64">
+          <End Role="State" Type="Self.State" Multiplicity="0..1" />
+          <End Role="Emp" Type="Self.Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__State__CountryId__2B3F6F97">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -65,9 +120,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fn_getDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="empID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_GetEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Manav_SchoolMgmt_42ModelStoreContainer">
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emp" EntityType="Self.Emp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__City__CountryId__2F10007B" Association="Self.FK__City__CountryId__2F10007B">
             <End Role="Country" EntitySet="Country" />
@@ -77,13 +138,24 @@
             <End Role="State" EntitySet="State" />
             <End Role="City" EntitySet="City" />
           </AssociationSet>
+          <AssociationSet Name="FK__Emp__City__5EBF139D" Association="Self.FK__Emp__City__5EBF139D">
+            <End Role="City" EntitySet="City" />
+            <End Role="Emp" EntitySet="Emp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emp__Country__5CD6CB2B" Association="Self.FK__Emp__Country__5CD6CB2B">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Emp" EntitySet="Emp" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emp__State__5DCAEF64" Association="Self.FK__Emp__State__5DCAEF64">
+            <End Role="State" EntitySet="State" />
+            <End Role="Emp" EntitySet="Emp" />
+          </AssociationSet>
           <AssociationSet Name="FK__State__CountryId__2B3F6F97" Association="Self.FK__State__CountryId__2B3F6F97">
             <End Role="Country" EntitySet="Country" />
             <End Role="State" EntitySet="State" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Manav_SchoolMgmt_42Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -97,6 +169,7 @@
           <Property Name="CountryId" Type="Int64" />
           <NavigationProperty Name="Country" Relationship="Self.FK__City__CountryId__2F10007B" FromRole="City" ToRole="Country" />
           <NavigationProperty Name="State" Relationship="Self.FK__City__StateId__2E1BDC42" FromRole="City" ToRole="State" />
+          <NavigationProperty Name="Emps" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__City__5EBF139D" FromRole="City" ToRole="Emp" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -106,6 +179,7 @@
           <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Cities" Relationship="Self.FK__City__CountryId__2F10007B" FromRole="Country" ToRole="City" />
           <NavigationProperty Name="States" Relationship="Self.FK__State__CountryId__2B3F6F97" FromRole="Country" ToRole="State" />
+          <NavigationProperty Name="Emps" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__Country__5CD6CB2B" FromRole="Country" ToRole="Emp" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -116,6 +190,7 @@
           <Property Name="CountryId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Cities" Relationship="Self.FK__City__StateId__2E1BDC42" FromRole="State" ToRole="City" />
           <NavigationProperty Name="Country" Relationship="Self.FK__State__CountryId__2B3F6F97" FromRole="State" ToRole="Country" />
+          <NavigationProperty Name="Emps" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__State__5DCAEF64" FromRole="State" ToRole="Emp" />
         </EntityType>
         <Association Name="FK__City__CountryId__2F10007B">
           <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
@@ -169,7 +244,88 @@
             <End Role="Country" EntitySet="Countries" />
             <End Role="State" EntitySet="States" />
           </AssociationSet>
+          <EntitySet Name="departments" EntityType="Manav_SchoolMgmt_42Model.department" />
+          <EntitySet Name="Emps" EntityType="Manav_SchoolMgmt_42Model.Emp" />
+          <AssociationSet Name="FK__Emp__City__5EBF139D" Association="Manav_SchoolMgmt_42Model.FK__Emp__City__5EBF139D">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Emp" EntitySet="Emps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emp__Country__5CD6CB2B" Association="Manav_SchoolMgmt_42Model.FK__Emp__Country__5CD6CB2B">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Emp" EntitySet="Emps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Emp__State__5DCAEF64" Association="Manav_SchoolMgmt_42Model.FK__Emp__State__5DCAEF64">
+            <End Role="State" EntitySet="States" />
+            <End Role="Emp" EntitySet="Emps" />
+          </AssociationSet>
+          <FunctionImport Name="Sp_GetEmployees" ReturnType="Collection(Manav_SchoolMgmt_42Model.Sp_GetEmployees_Result)" />
         </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Emp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="Int64" />
+          <Property Name="State" Type="Int64" />
+          <Property Name="City" Type="Int64" />
+          <NavigationProperty Name="City1" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__City__5EBF139D" FromRole="Emp" ToRole="City" />
+          <NavigationProperty Name="Country1" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__Country__5CD6CB2B" FromRole="Emp" ToRole="Country" />
+          <NavigationProperty Name="State1" Relationship="Manav_SchoolMgmt_42Model.FK__Emp__State__5DCAEF64" FromRole="Emp" ToRole="State" />
+        </EntityType>
+        <Association Name="FK__Emp__City__5EBF139D">
+          <End Type="Manav_SchoolMgmt_42Model.City" Role="City" Multiplicity="0..1" />
+          <End Type="Manav_SchoolMgmt_42Model.Emp" Role="Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emp__Country__5CD6CB2B">
+          <End Type="Manav_SchoolMgmt_42Model.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="Manav_SchoolMgmt_42Model.Emp" Role="Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Emp__State__5DCAEF64">
+          <End Type="Manav_SchoolMgmt_42Model.State" Role="State" Multiplicity="0..1" />
+          <End Type="Manav_SchoolMgmt_42Model.Emp" Role="Emp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emp">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Sp_GetEmployees_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="260" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="255" />
+          <Property Type="Int64" Name="City" Nullable="true" />
+          <Property Type="Int64" Name="Country" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -203,6 +359,39 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="Manav_SchoolMgmt_42Model.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emps">
+            <EntityTypeMapping TypeName="Manav_SchoolMgmt_42Model.Emp">
+              <MappingFragment StoreEntitySet="Emp">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_GetEmployees" FunctionName="Manav_SchoolMgmt_42Model.Store.Sp_GetEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Manav_SchoolMgmt_42Model.Sp_GetEmployees_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,4 +1,5 @@
 ﻿using AjaxDropdown.Model.Context;
+using AjaxDropdown.Model.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,11 @@ namespace AjaxDropdown.Repository.Repository
         List<State> StateDropdown();
 
         List<City> CityDropdown();
+
+        List<department> DeptDropdown();
+
+        void  AddEmpData(CSCModel EmpData);
+
+        List<Sp_GetEmployees_Result> AllEmployees();
     }
 }

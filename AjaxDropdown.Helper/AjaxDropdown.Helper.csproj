@@ -48,10 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helper\EmpHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helper\" />
+    <ProjectReference Include="..\AjaxDropdown.Model\AjaxDropdown.Model.csproj">
+      <Project>{048dbcbc-de1c-44d7-9e67-2527c96987f2}</Project>
+      <Name>AjaxDropdown.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

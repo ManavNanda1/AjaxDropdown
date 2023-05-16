@@ -18,6 +18,7 @@ namespace AjaxDropdown.Model.Context
         public State()
         {
             this.Cities = new HashSet<City>();
+            this.Emps = new HashSet<Emp>();
         }
     
         public long Id { get; set; }
@@ -27,5 +28,7 @@ namespace AjaxDropdown.Model.Context
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<City> Cities { get; set; }
         public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Emp> Emps { get; set; }
     }
 }

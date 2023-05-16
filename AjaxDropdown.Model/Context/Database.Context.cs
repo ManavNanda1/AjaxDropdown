@@ -12,6 +12,8 @@ namespace AjaxDropdown.Model.Context
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Manav_SchoolMgmt_42Entities : DbContext
     {
@@ -28,5 +30,12 @@ namespace AjaxDropdown.Model.Context
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<department> departments { get; set; }
+        public virtual DbSet<Emp> Emps { get; set; }
+    
+        public virtual ObjectResult<Sp_GetEmployees_Result> Sp_GetEmployees()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_GetEmployees_Result>("Sp_GetEmployees");
+        }
     }
 }

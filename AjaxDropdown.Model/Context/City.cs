@@ -14,6 +14,12 @@ namespace AjaxDropdown.Model.Context
     
     public partial class City
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public City()
+        {
+            this.Emps = new HashSet<Emp>();
+        }
+    
         public long Id { get; set; }
         public string CityName { get; set; }
         public Nullable<long> StateId { get; set; }
@@ -21,5 +27,7 @@ namespace AjaxDropdown.Model.Context
     
         public virtual Country Country { get; set; }
         public virtual State State { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Emp> Emps { get; set; }
     }
 }

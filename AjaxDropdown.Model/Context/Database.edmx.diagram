@@ -11,6 +11,11 @@
         <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__City__CountryId__2F10007B" ManuallyRouted="false" />
         <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__City__StateId__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__State__CountryId__2B3F6F97" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Manav_SchoolMgmt_42Model.department" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Manav_SchoolMgmt_42Model.Emp" Width="1.5" PointX="7.5" PointY="3.625" />
+        <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__Emp__City__5EBF139D" />
+        <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__Emp__Country__5CD6CB2B" />
+        <AssociationConnector Association="Manav_SchoolMgmt_42Model.FK__Emp__State__5DCAEF64" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

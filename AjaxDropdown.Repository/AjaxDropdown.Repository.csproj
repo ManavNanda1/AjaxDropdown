@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AjaxDropdown.Helper\AjaxDropdown.Helper.csproj">
+      <Project>{15fa2ba5-c134-425c-8311-2d9f1d6a550e}</Project>
+      <Name>AjaxDropdown.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AjaxDropdown.Model\AjaxDropdown.Model.csproj">
       <Project>{048dbcbc-de1c-44d7-9e67-2527c96987f2}</Project>
       <Name>AjaxDropdown.Model</Name>
