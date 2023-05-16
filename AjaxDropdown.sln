@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxDropdown", "AjaxDropdown\AjaxDropdown.csproj", "{3DE2E7DE-7730-41A9-9BA6-60628958FAE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxDropdown.Helper", "AjaxDropdown.Helper\AjaxDropdown.Helper.csproj", "{15FA2BA5-C134-425C-8311-2D9F1D6A550E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxDropdown.Model", "AjaxDropdown.Model\AjaxDropdown.Model.csproj", "{048DBCBC-DE1C-44D7-9E67-2527C96987F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxDropdown.Repository", "AjaxDropdown.Repository\AjaxDropdown.Repository.csproj", "{31C2AADA-003F-4ECD-B36D-50B5D367CFCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DE2E7DE-7730-41A9-9BA6-60628958FAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE2E7DE-7730-41A9-9BA6-60628958FAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE2E7DE-7730-41A9-9BA6-60628958FAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE2E7DE-7730-41A9-9BA6-60628958FAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FA2BA5-C134-425C-8311-2D9F1D6A550E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FA2BA5-C134-425C-8311-2D9F1D6A550E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FA2BA5-C134-425C-8311-2D9F1D6A550E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FA2BA5-C134-425C-8311-2D9F1D6A550E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048DBCBC-DE1C-44D7-9E67-2527C96987F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048DBCBC-DE1C-44D7-9E67-2527C96987F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048DBCBC-DE1C-44D7-9E67-2527C96987F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048DBCBC-DE1C-44D7-9E67-2527C96987F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C2AADA-003F-4ECD-B36D-50B5D367CFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C2AADA-003F-4ECD-B36D-50B5D367CFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C2AADA-003F-4ECD-B36D-50B5D367CFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C2AADA-003F-4ECD-B36D-50B5D367CFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E9FE7E1-278C-4F84-B9D8-D77C4CE2425C}
+	EndGlobalSection
+EndGlobal
