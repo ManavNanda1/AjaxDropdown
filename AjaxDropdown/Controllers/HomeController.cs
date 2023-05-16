@@ -101,5 +101,40 @@ namespace AjaxDropdown.Controllers
                 throw E;
             }
         }
+
+        public ActionResult DeleteEmployee(int Id)
+        {
+            try
+            {
+                if (DropDownObj.DeleteEmployee(Id) == 1)
+                {
+
+                    return RedirectToAction("AllEmployees");
+                }
+                else {
+                    return View();
+                }
+            }
+            catch(Exception E)
+            {
+                throw E;
+            }
+        }
+
+        public ActionResult Editdata(int id) {
+            ViewBag.CountryList = DropDownObj.CountryDropdown();
+            ViewBag.DeptList = DropDownObj.DeptDropdown();
+            var data =  DropDownObj.GetData(id);
+            return View(data);
+        }
+
+        public ActionResult Updatedata(CSCModel Updateddata , FormCollection FormData) {
+
+            string DeptId = FormData["Department"];
+            Updateddata.Department = DeptId;
+
+            DropDownObj.AddUpdatedData(Updateddata);
+            return RedirectToAction("AllEmployees"); 
+        }
     }
 }

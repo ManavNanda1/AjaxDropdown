@@ -21,5 +21,11 @@ namespace AjaxDropdown.Repository.Repository
         void  AddEmpData(CSCModel EmpData);
 
         List<Sp_GetEmployees_Result> AllEmployees();
+
+        int DeleteEmployee(int Id);
+
+        CSCModel GetData(int Id);
+
+        void AddUpdatedData(CSCModel UpdatedData);
     }
 }

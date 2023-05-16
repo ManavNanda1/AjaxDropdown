@@ -47,8 +47,9 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>
         <td>
-           <button class="btn btn-warning">Edit</button>
-           <button class="btn btn-danger">Delete</button>
+       
+            <button class="btn btn-danger"> <a href=@Url.Action("DeleteEmployee" , "Home", new {id = item.Id})> Delete</a></button>
+            <button class="btn btn-warning"> <a href=@Url.Action("Editdata" , "Home", new {id = item.Id})> Edit</a></button>
         </td>
     </tr>
 }

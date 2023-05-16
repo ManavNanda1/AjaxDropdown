@@ -124,6 +124,15 @@
           <Parameter Name="empID" Type="int" Mode="In" />
         </Function>
         <Function Name="Sp_GetEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_updateemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Department" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="int" Mode="In" />
+          <Parameter Name="State" Type="int" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="Manav_SchoolMgmt_42ModelStoreContainer">
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
@@ -259,6 +268,15 @@
             <End Role="Emp" EntitySet="Emps" />
           </AssociationSet>
           <FunctionImport Name="Sp_GetEmployees" ReturnType="Collection(Manav_SchoolMgmt_42Model.Sp_GetEmployees_Result)" />
+          <FunctionImport Name="sp_updateemp">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Department" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="Int32" />
+            <Parameter Name="State" Mode="In" Type="Int32" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="department">
           <Key>
@@ -392,6 +410,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_updateemp" FunctionName="Manav_SchoolMgmt_42Model.Store.sp_updateemp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

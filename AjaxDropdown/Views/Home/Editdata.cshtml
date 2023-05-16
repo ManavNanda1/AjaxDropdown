@@ -1,0 +1,105 @@
+﻿@model AjaxDropdown.Model.Model.CSCModel
+
+@{
+    ViewBag.Title = "Editdata";
+}
+
+<h2>Editdata</h2>
+
+<div class="row">
+    @using (@Html.BeginForm("Updatedata", "Home", FormMethod.Post))
+    {
+        <div>
+            @Html.HiddenFor(x => x.Id)
+            @Html.LabelFor(x => x.Name)
+            <div>
+                @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(x => x.Email)
+            <div>
+                @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(x => x.Department)
+            <div>
+                @Html.DropDownListFor(x => x.Department, new SelectList(ViewBag.DeptList, "Id", "Name"), "Select Department", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(x => x.CountryId)
+            <div>
+                @Html.DropDownListFor(x => x.CountryId, new SelectList(ViewBag.CountryList, "Id", "CountryName"), "Select Country", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CountryId)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(x => x.StateId)
+            <div>
+                @Html.DropDownListFor(x => x.StateId, new SelectList(""), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.StateId)
+            </div>
+        </div>
+
+        <div>
+            @Html.LabelFor(x => x.CityId)
+            <div>
+                @Html.DropDownListFor(x => x.CityId, new SelectList(""), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.CityId)
+            </div>
+        </div>
+
+        <div style="margin-top:10px">
+            <button class="btn btn-success">Submit</button>
+        </div>
+
+    }
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#CountryId").change(() => {
+            let id = $("#CountryId").val();
+            $("#StateId").html(`<option>Select Statename</option>`)
+            $.ajax({
+                url: `/Home/StateDpd/${id}`,
+                method: "GET",
+                success: function (res) {
+                    res.forEach(ele => {
+                        $("#StateId").append(`<option value =${ele.Id}>${ele.StateName}</option>`)
+                    })
+                }
+            })
+
+        })
+
+        $("#StateId").change(() => {
+            let id = $("#StateId").val();
+            $("#CityId").html(`<option>Select City Name </option>`)
+            $.ajax({
+                url: `/Home/CityDpd/${id}`,
+                method: "GET",
+                success: function (res) {
+                    console.log(res);
+                    res.forEach(ele => {
+                        $("#CityId").append(`<option value = ${ele.Id}>${ele.Name} </option>`)
+                    })
+                }
+
+            })
+        })
+
+        $("#Department").select2({
+            multiple: true
+        })
+    })
+
+</script>

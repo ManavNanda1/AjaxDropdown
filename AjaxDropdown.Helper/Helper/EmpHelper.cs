@@ -24,5 +24,22 @@ namespace AjaxDropdown.Helper.Helper
             return MainObj;
       
         }
+
+        public CSCModel GetempData(Emp Empdata)
+        {
+            CSCModel MainObj = new CSCModel();
+            MainObj.Id = Empdata.Id;
+            MainObj.Name = Empdata.Name;
+            MainObj.Email = Empdata.Email;
+            MainObj.Department = Empdata.Department;
+            MainObj.CountryId =(int) Empdata.Country;
+            MainObj.StateId =(int) Empdata.State;
+            MainObj.CityId =(int) Empdata.City;
+
+            return MainObj;
+
+        }
+
+
     }
 }

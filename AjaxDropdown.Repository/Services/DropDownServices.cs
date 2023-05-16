@@ -92,5 +92,59 @@ namespace AjaxDropdown.Repository.Services
                 throw E;
             }
         }
+
+        public int DeleteEmployee(int Id)
+        {
+            try
+            {
+                var IsEmpCheck = Context.Emps.Any(x => x.Id == Id);
+                if (IsEmpCheck)
+                {
+                    var Employee = Context.Emps.FirstOrDefault(m => m.Id == Id);
+                    Context.Emps.Remove(Employee);
+                    Context.SaveChanges();
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch(Exception E)
+            {
+                throw E;
+            }
+        }
+
+        public CSCModel GetData(int Id)
+        {
+            try
+            {
+                EmpHelper Helper = new EmpHelper();
+                var student = Context.Emps.Where(x => x.Id == Id).FirstOrDefault();
+                var data = Helper.GetempData(student);
+                return data;
+            }
+            catch(Exception E)
+            {
+                throw E;
+            }
+        }
+
+        public void AddUpdatedData(CSCModel UpdatedData)
+        {
+            try
+            {
+                EmpHelper Helper = new EmpHelper();
+                var data = Helper.AddUseInDb(UpdatedData);
+                Context.sp_updateemp(data.Id, data.Name, data.Email, data.Department, Convert.ToInt32(data.Country),
+                                     Convert.ToInt32(data.State), Convert.ToInt32(data.City));
+                Context.SaveChanges();
+            }
+            catch(Exception E)
+            {
+                throw E;
+            }
+        }
     }
 }

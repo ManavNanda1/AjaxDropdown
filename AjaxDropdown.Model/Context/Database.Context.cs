@@ -37,5 +37,38 @@ namespace AjaxDropdown.Model.Context
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Sp_GetEmployees_Result>("Sp_GetEmployees");
         }
+    
+        public virtual int sp_updateemp(Nullable<int> id, string name, string email, string department, Nullable<int> country, Nullable<int> state, Nullable<int> city)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("Department", department) :
+                new ObjectParameter("Department", typeof(string));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(int));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("State", state) :
+                new ObjectParameter("State", typeof(int));
+    
+            var cityParameter = city.HasValue ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_updateemp", idParameter, nameParameter, emailParameter, departmentParameter, countryParameter, stateParameter, cityParameter);
+        }
     }
 }
